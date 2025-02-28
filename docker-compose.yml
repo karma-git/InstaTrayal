@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  instagram_unfollowers:
+    build: .
+    container_name: instagram_unfollowers
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
