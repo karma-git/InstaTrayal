@@ -40,8 +40,15 @@ async def get_unfollowers(credentials: UserCredentials):
     unfollowers = {}
     for user in following.values():
         if user.pk not in followers:
-            unfollower = {user.username: user.full_name}
-            unfollowers.update(unfollower)
+            # user_info = cl.user_info(user.pk)
+            unfollowers[user.username] = {
+                "full_name": user.full_name,
+                # "followers_count": user_info.follower_count,
+                "profile_url": f"https://www.instagram.com/{user.username}/"
+            }
+
+            # unfollower = {user.username: user.full_name}
+            # unfollowers.update(unfollower)
 
     unfollowers_json = json.dumps(unfollowers, indent=4, ensure_ascii=False)
     logger.debug(f"Последний отписун {user} {dir(user)}")
